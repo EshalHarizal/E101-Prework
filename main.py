@@ -11,6 +11,8 @@ isakari = 0
 #this base code is taken from code2college itself! i'm building off of it... i am also basing it off of my "where are you, dreamcatcher?" repl.it project i built for c2c bootcamp, in a section where you talk to nightmare :)
 
 
+#TODO: make swearlist, tealist, etc
+
 
 #----NAME
 def userintro():
@@ -34,9 +36,9 @@ def userintro():
 
 #----WHAT TEA D'YA WANT?
 def teatype():
-  time.sleep(2.5)
+  time.sleep(1.5)
   print('[SURELY YOU REMEMBER ME: I AM NIGHTMARE. AFTER THE FIASCO OF LAST TIME- YOU GETTING LOST HERE-, I CERTAINLY HAVEN\'T FORGETTEN YOU.]')
-  time.sleep(1)
+  time.sleep(2)
   teachoice = input('[OH, HOW RUDE OF ME. I HAVEN\'T EVEN OFFERED YOU A CUP OF TEA. WHAT KIND OF TEA DO YOU FANCY?]\n')
 
   teachoice = teachoice.lower()
@@ -48,29 +50,58 @@ def teatype():
     if isakari == 1:
       print('[AH, OF COURSE. I HAVE A NEW BLEND PREPARED FOR YOU.]')
     else:
-      print(f'[CHAMOMILE? I THINK I LIKE YOU, DREAMCATCHER {name.upper()}]')
-  if "black" in teachoice:
-    print('YOOO CHILL')
+      print(f'[...CHAMOMILE? PERFECT FOR SLEEP. I THINK I LIKE YOU, DREAMCATCHER {name.upper()}.]')
+  elif "black" in teachoice:
+    print('[AH, A CLASSIC CHOICE. I\'LL POUR A PERSONAL BLEND.]')
+  elif "oolong" in teachoice:
+    print('[I HAVEN\'T HAD OOLONG IN QUITE A LONG TIME... HERE\'S A PICK OF ORIENTAL BEAUTY I\'VE BEEN WANTING TO TRY.]')
+  elif "white" in teachoice:
+    print('[HM, WHITE TEA... I DO HAVE THAT SET OF SILVER NEEDLE LEAVES... I\'LL STEEP IT.]')
+  elif "green" in teachoice:
+    print('[...GREEN TEA? DREAM HAS BEEN INFLUENCING YOU WITH HIS HORRENDOUS TASTE. HE CAN HARDLY MAKE JASMINE GREEN THE WAY I DO.]')
+  elif "matcha" in teachoice:
+    print(f'[EXCELLENT CHOICE, DREAMCATCHER {name.upper()}. I AM VERY GOOD AT MAKING MATCHA.')
+  elif ("herb" in teachoice) or ("tisane" in teachoice):
+    #TODO: maybe make list of herbal teas? sounds like a long list...
+    print('[OH, I CAN PICK AN HERBAL TEA FOR YOU...]')
+  else: #TODO: turn into loop in the future?
+    print('[AH... NO, IT\'D BE MUCH EASIER IF I JUST GAVE YOU A CUP OF MY CHOSING INSTEAD. I DO HOPE YOU ENJOY EARL GREY.]')
 
   init_chat()
 
 def generate_response(user_input):
-  responses = [
-    "Sorry, I didn't understand that. Are you returning or exchanging an item?",
-    "Didn't catch that- Are you returning or exchanging?",
-    "If you want to do something other than return or exchange an item, this helpline isn't for you!"
+  negresponses = [
+    "bad response 1",
+    "bad response 2"
   ]
-  return random.choice(responses)
+  responses = [
+    "He only nods, looking at you with an enigmatic look on his face.",
+    "It doesn't seem like the comment phases him..."
+  ]
+  posresponses = [
+    "uR cuTe",
+    "kisSES YoU"
+  ]
+  akaresponses = responses + posresponses
+  strangeresponses = negresponses + responses
+  if isakari == 1:
+    return random.choice(akaresponses)
+  else:
+    return random.choice(strangeresponses)
 
 def init_chat():
-  quit_character = 'q'
+  quit_character = "q" #comment this out later
   
-
-  user_input = input("Yasss")
+  time.sleep(2)
+  print('\n\nNightmare begins to brew a new pot of tea, and he looks at you from across the desk.')
+  time.sleep(3)
+  print(f'[WELL? SINCE YOU\'RE HERE AND ALL... TALK TO ME, DREAMCATCHER {name.upper()}.]')
+  time.sleep(2)
+  user_input = input("You say...\n")
 
   while user_input != quit_character:
     #Ask the user for more input, then use that in your response
-    user_input = input(generate_response(user_input) + "\n")
+    user_input = input(generate_response(user_input) + "\n\n")
 
   #while user_input == 
 
@@ -84,7 +115,7 @@ time.sleep(2)
 print('At the study\'s desk sits a void-like figure that you can\'t make out...')
 time.sleep(2)
 print('The feeling of dread overwhelms you, but it feels so familiar.')
-time.sleep(2)
+time.sleep(2.5)
 print('He speaks.\n')
 time.sleep(2)
 userintro()
